@@ -70,6 +70,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                     contentScale = ContentScale.Crop
                 )
             }
+            //
             else { //Usuario no cargo imagen, va la imagen de icono generico
                 Image(
                     modifier = Modifier
