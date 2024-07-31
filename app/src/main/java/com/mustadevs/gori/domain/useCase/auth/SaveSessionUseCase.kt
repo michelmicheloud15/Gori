@@ -1,0 +1,9 @@
+package com.mustadevs.gori.domain.useCase.auth
+
+import com.mustadevs.gori.domain.model.AuthResponse
+import com.mustadevs.gori.domain.repository.AuthRepository
+
+class SaveSessionUseCase constructor(private val repository: AuthRepository) {
+
+    suspend operator fun invoke(authResponse: AuthResponse) = repository.saveSession(authResponse)
+}
