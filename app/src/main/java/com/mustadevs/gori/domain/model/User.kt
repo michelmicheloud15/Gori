@@ -11,7 +11,7 @@ data class User(
     @SerializedName("lastname") val lastname: String,
     @SerializedName("email") val email: String,
     @SerializedName("phone") val phone: String,
-    @SerializedName("password") val password: String,
+    @SerializedName("password") val password: String? = null,
     @SerializedName("image") val image: String? = null,
     @SerializedName("notification_token") val notificationToken: String? = null,
     @SerializedName("roles") val roles: List<Rol>? = null,

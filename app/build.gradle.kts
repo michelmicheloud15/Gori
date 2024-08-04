@@ -97,6 +97,9 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.2.2")
 
     implementation ("androidx.compose.material:material:1.6.8")
+
+    //FILES TRANSFORMATION
+    implementation ("commons-io:commons-io:2.11.0")
 }
 
 kapt {

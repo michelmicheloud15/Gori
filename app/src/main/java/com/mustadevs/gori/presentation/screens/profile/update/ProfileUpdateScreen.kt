@@ -20,7 +20,7 @@ fun ProfileUpdateScreen(navController: NavHostController, userParam: String) {
                 upAvailable = true
             )
         }
-    ) {
-        ProfileUpdateContent(paddingValues = it)
+    ) {paddingValues ->
+        ProfileUpdateContent(paddingValues = paddingValues)
     }
 }

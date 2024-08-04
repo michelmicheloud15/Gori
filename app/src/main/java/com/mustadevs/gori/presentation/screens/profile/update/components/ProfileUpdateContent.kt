@@ -2,6 +2,7 @@ package com.mustadevs.gori.presentation.screens.profile.update.components
 
 import android.app.Activity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,6 +21,8 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,12 +38,21 @@ import coil.compose.AsyncImage
 import com.mustadevs.gori.R
 import com.mustadevs.gori.presentation.components.DefaultButton
 import com.mustadevs.gori.presentation.components.DefaultTextField
+import com.mustadevs.gori.presentation.components.DialogCapturePicture
 import com.mustadevs.gori.presentation.screens.profile.update.ProfileUpdateViewModel
 
 @Composable
 fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewModel = hiltViewModel()){ //sacar el vm para obtener preview
-   val activity = LocalContext.current as? Activity
+    val activity = LocalContext.current as? Activity
     val state = vm.state
+    val stateDialog = remember { mutableStateOf(false) }
+    vm.resultingActivityHandler.handle()
+
+    DialogCapturePicture(
+        state = stateDialog,
+        takePhoto = { vm.takePhoto() },
+        pickImage = { vm.pickImage() }
+    )
 
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
@@ -65,7 +77,8 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                     modifier = Modifier
                         .size(150.dp)
                         .clip(CircleShape)
-                        .align(Alignment.CenterHorizontally),
+                        .align(Alignment.CenterHorizontally)
+                        .clickable { stateDialog.value = true },
                     model = state.image,
                     contentDescription = "",
                     contentScale = ContentScale.Crop
@@ -77,7 +90,8 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                         .size(150.dp)
                         .clip(CircleShape)
                         .align(Alignment.CenterHorizontally)
-                        .padding(top = 15.dp),
+                        .padding(top = 15.dp)
+                        .clickable { stateDialog.value = true },
                     painter = painterResource(id = R.drawable.user_image), contentDescription = ""
                 )
             }
@@ -118,7 +132,8 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Confirmar",
-                        onClick = { })
+                        onClick = {  }
+                    )
                 }
             }
         }
