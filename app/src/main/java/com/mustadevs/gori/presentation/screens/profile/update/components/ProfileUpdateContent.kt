@@ -40,6 +40,7 @@ import com.mustadevs.gori.presentation.screens.profile.update.ProfileUpdateViewM
 @Composable
 fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewModel = hiltViewModel()){ //sacar el vm para obtener preview
    val activity = LocalContext.current as? Activity
+    val state = vm.state
 
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
@@ -59,18 +60,17 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
         Column(modifier = Modifier.fillMaxWidth()){
 
             //Si el usuario cargo imagen:
-            if(!vm.user?.image.isNullOrBlank()){
+            if(!state.image.isNullOrBlank()){
                 AsyncImage(
                     modifier = Modifier
                         .size(150.dp)
                         .clip(CircleShape)
                         .align(Alignment.CenterHorizontally),
-                    model = vm.user?.image,
+                    model = state.image,
                     contentDescription = "",
                     contentScale = ContentScale.Crop
                 )
             }
-            //
             else { //Usuario no cargo imagen, va la imagen de icono generico
                 Image(
                     modifier = Modifier
@@ -95,22 +95,22 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                     ){
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.name,
+                        onValueChange = {vm.onNameInput(it)},
                         label = "Nombre",
                         icon = Icons.Default.Person
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.lastname,
+                        onValueChange = { vm.onLastnameInput(it) },
                         label = "Apellido",
                         icon = Icons.Outlined.Person
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.phone,
+                        onValueChange = {vm.onPhoneInput(it)},
                         label = "Teléfono",
                         icon = Icons.Default.Phone
                     )

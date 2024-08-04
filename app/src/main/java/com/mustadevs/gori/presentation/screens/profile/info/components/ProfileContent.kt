@@ -47,7 +47,8 @@ import com.mustadevs.gori.presentation.navigation.Graph
 import com.mustadevs.gori.presentation.screens.profile.info.ProfileViewModel
 
 @Composable
-fun ProfileContent(paddingValues: PaddingValues, navController: NavHostController,vm: ProfileViewModel = hiltViewModel()){ //sacar el vm para obtener preview
+fun ProfileContent(paddingValues: PaddingValues, navController: NavHostController,vm: ProfileViewModel = hiltViewModel())
+{ //sacar el vm para obtener preview
    val activity = LocalContext.current as? Activity
 
     Box(modifier = Modifier.padding(paddingValues = paddingValues).padding(bottom = 55.dp)){
@@ -172,10 +173,11 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
                         modifier = Modifier.fillMaxWidth(),
                         text = "Actualizar información",
                         onClick = {
-                            navController.navigate(route = Graph.PROFILE)
-                        })
+                            navController.navigate(Graph.PROFILE + "/" + (vm.user?.id ?: ""))
+                                }
+                            )
+                    }
                 }
             }
         }
-    }
 }
