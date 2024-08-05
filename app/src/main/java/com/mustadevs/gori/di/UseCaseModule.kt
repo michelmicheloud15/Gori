@@ -8,6 +8,7 @@ import com.mustadevs.gori.domain.useCase.auth.LoginUseCase
 import com.mustadevs.gori.domain.useCase.auth.LogoutUseCase
 import com.mustadevs.gori.domain.useCase.auth.RegisterUseCase
 import com.mustadevs.gori.domain.useCase.auth.SaveSessionUseCase
+import com.mustadevs.gori.domain.useCase.auth.UpdateSessionUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
 import dagger.Module
@@ -25,7 +26,8 @@ object UseCaseModule {
         register = RegisterUseCase(authRepository),
         saveSession = SaveSessionUseCase(authRepository),
         getSessionData = GetSessionDataUseCase(authRepository),
-        logout = LogoutUseCase(authRepository)
+        logout = LogoutUseCase(authRepository),
+        updateSession = UpdateSessionUseCase(authRepository)
     )
 
     @Provides

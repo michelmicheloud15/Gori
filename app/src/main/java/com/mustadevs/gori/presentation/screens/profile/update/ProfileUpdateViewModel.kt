@@ -12,6 +12,7 @@ import com.mustadevs.gori.domain.model.User
 import com.mustadevs.gori.domain.useCase.auth.AuthUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
 import com.mustadevs.gori.domain.util.Resource
+import com.mustadevs.gori.presentation.screens.profile.update.mapper.toUser
 import com.mustadevs.gori.presentation.util.ComposeFileProvider
 import com.mustadevs.gori.presentation.util.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,14 +52,13 @@ class ProfileUpdateViewModel @Inject constructor(
         Log.d("ProfileUpdateViewModel", "User JSON: $data")
     }
 
+    fun updateUserSession() = viewModelScope.launch {
+        authUseCase.updateSession(state.toUser())
+    }
+
     fun update() = viewModelScope.launch {
-        val userData = User(
-            name = state.name,
-            lastname = state.lastname,
-            phone = state.phone
-        )
         updateResponse = Resource.Loading
-        val result = usersUseCase.updateUser(user.id ?: "", userData)
+        val result = usersUseCase.updateUser(user.id ?: "", state.toUser())
         updateResponse = result
     }
     fun pickImage() = viewModelScope.launch{

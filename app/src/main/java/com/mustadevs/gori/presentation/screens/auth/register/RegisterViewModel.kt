@@ -7,9 +7,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mustadevs.gori.domain.model.AuthResponse
-import com.mustadevs.gori.domain.model.User
 import com.mustadevs.gori.domain.useCase.auth.AuthUseCase
 import com.mustadevs.gori.domain.util.Resource
+import com.mustadevs.gori.presentation.screens.auth.register.mapper.toUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,16 +31,8 @@ class RegisterViewModel @Inject constructor(private val authUseCase: AuthUseCase
 
     fun register() = viewModelScope.launch {
         if (isValidForm()){
-            val user = User(
-                name = state.name,
-                lastname = state.lastname,
-                phone = state.phone,
-                email = state.email,
-                password = state.password
-
-            )
             registerResponse = Resource.Loading
-            val result = authUseCase.register(user)
+            val result = authUseCase.register(state.toUser())
             registerResponse = result //DATA / ERROR
         }
 
