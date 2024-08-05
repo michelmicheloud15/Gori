@@ -78,6 +78,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                         .size(150.dp)
                         .clip(CircleShape)
                         .align(Alignment.CenterHorizontally)
+                        .padding(top = 15.dp)
                         .clickable { stateDialog.value = true },
                     model = state.image,
                     contentDescription = "",

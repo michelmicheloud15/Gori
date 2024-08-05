@@ -10,6 +10,7 @@ import com.mustadevs.gori.domain.useCase.auth.RegisterUseCase
 import com.mustadevs.gori.domain.useCase.auth.SaveSessionUseCase
 import com.mustadevs.gori.domain.useCase.auth.UpdateSessionUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
+import com.mustadevs.gori.domain.useCase.users.UpdateUserWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
 import dagger.Module
 import dagger.Provides
@@ -32,6 +33,7 @@ object UseCaseModule {
 
     @Provides
     fun provideUsersUseCase(usersRepository: UsersRepository) = UsersUseCase(
-    updateUser = UpdateUserUseCase(usersRepository)
+        updateUser = UpdateUserUseCase(usersRepository),
+        updateUserWithImage = UpdateUserWithImageUseCase(usersRepository)
     )
 }

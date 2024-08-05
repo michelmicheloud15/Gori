@@ -52,10 +52,24 @@ class ProfileUpdateViewModel @Inject constructor(
         Log.d("ProfileUpdateViewModel", "User JSON: $data")
     }
 
-    fun updateUserSession() = viewModelScope.launch {
-        authUseCase.updateSession(state.toUser())
+    fun onUpdate(){
+        if(file != null){// selecciono una imagen
+            updateWithImage()
+    }
+        else {
+            update()
+        }
+    }
+    fun updateUserSession(userResponse: User) = viewModelScope.launch {
+        authUseCase.updateSession(userResponse)
     }
 
+    fun updateWithImage() = viewModelScope.launch {
+        updateResponse = Resource.Loading
+        val result = usersUseCase.updateUserWithImage(user.id ?: "", state.toUser(), file!!)
+        updateResponse = result
+
+    }
     fun update() = viewModelScope.launch {
         updateResponse = Resource.Loading
         val result = usersUseCase.updateUser(user.id ?: "", state.toUser())
