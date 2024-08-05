@@ -132,7 +132,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Confirmar",
-                        onClick = {  }
+                        onClick = { vm.update() }
                     )
                 }
             }

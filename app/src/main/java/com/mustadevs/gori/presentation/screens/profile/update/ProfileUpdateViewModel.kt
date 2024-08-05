@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mustadevs.gori.domain.model.User
 import com.mustadevs.gori.domain.useCase.auth.AuthUseCase
+import com.mustadevs.gori.domain.useCase.users.UsersUseCase
+import com.mustadevs.gori.domain.util.Resource
 import com.mustadevs.gori.presentation.util.ComposeFileProvider
 import com.mustadevs.gori.presentation.util.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileUpdateViewModel @Inject constructor(
     private val authUseCase: AuthUseCase,
+    private val usersUseCase: UsersUseCase,
     private val savedStateHandle: SavedStateHandle,
     @ApplicationContext private val context: Context
 ): ViewModel(){
@@ -30,12 +33,14 @@ class ProfileUpdateViewModel @Inject constructor(
 
     //ARGUMENTS
     val data = savedStateHandle.get<String>("user")
-    val user = User.fromJson(data!!)
+    var user = User.fromJson(data!!) //val no permite asignar nuevos valores, var en cambio si.
 
     //IMAGES
     var file: File? = null
     val resultingActivityHandler= ResultingActivityHandler()
 
+    var updateResponse by mutableStateOf<Resource<User>?>(null)
+        private set
     init {
         state = state.copy(
             name = user.name,
@@ -44,6 +49,17 @@ class ProfileUpdateViewModel @Inject constructor(
             image = user.image ?: "",
         )
         Log.d("ProfileUpdateViewModel", "User JSON: $data")
+    }
+
+    fun update() = viewModelScope.launch {
+        val userData = User(
+            name = state.name,
+            lastname = state.lastname,
+            phone = state.phone
+        )
+        updateResponse = Resource.Loading
+        val result = usersUseCase.updateUser(user.id ?: "", userData)
+        updateResponse = result
     }
     fun pickImage() = viewModelScope.launch{
         val result = resultingActivityHandler.getContent("image/*") //selecciona imagen de galeria
