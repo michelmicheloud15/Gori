@@ -1,6 +1,7 @@
 package com.mustadevs.gori.di
 
 import com.mustadevs.gori.domain.repository.AuthRepository
+import com.mustadevs.gori.domain.repository.CategoriesRepository
 import com.mustadevs.gori.domain.repository.UsersRepository
 import com.mustadevs.gori.domain.useCase.auth.AuthUseCase
 import com.mustadevs.gori.domain.useCase.auth.GetSessionDataUseCase
@@ -9,6 +10,8 @@ import com.mustadevs.gori.domain.useCase.auth.LogoutUseCase
 import com.mustadevs.gori.domain.useCase.auth.RegisterUseCase
 import com.mustadevs.gori.domain.useCase.auth.SaveSessionUseCase
 import com.mustadevs.gori.domain.useCase.auth.UpdateSessionUseCase
+import com.mustadevs.gori.domain.useCase.categories.CategoriesUseCase
+import com.mustadevs.gori.domain.useCase.categories.CreateCategoryUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
@@ -36,4 +39,11 @@ object UseCaseModule {
         updateUser = UpdateUserUseCase(usersRepository),
         updateUserWithImage = UpdateUserWithImageUseCase(usersRepository)
     )
+
+    @Provides
+    fun provideCategoriesUseCase(categoriesRepository: CategoriesRepository) = CategoriesUseCase(
+        createCategory = CreateCategoryUseCase(categoriesRepository)
+    )
+
+
 }

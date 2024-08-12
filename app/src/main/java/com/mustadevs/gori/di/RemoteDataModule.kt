@@ -1,10 +1,13 @@
 package com.mustadevs.gori.di
 
 import com.mustadevs.gori.data.repository.dataSource.AuthRemoteDataSource
+import com.mustadevs.gori.data.repository.dataSource.CategoriesRemoteDataSource
 import com.mustadevs.gori.data.repository.dataSource.UsersRemoteDataSource
 import com.mustadevs.gori.data.repository.dataSourceImpl.AuthRemoteDataSourceImpl
+import com.mustadevs.gori.data.repository.dataSourceImpl.CategoriesRemoteDataSourceImpl
 import com.mustadevs.gori.data.repository.dataSourceImpl.UsersRemoteDataSourceImpl
 import com.mustadevs.gori.data.service.AuthService
+import com.mustadevs.gori.data.service.CategoriesService
 import com.mustadevs.gori.data.service.UsersService
 import dagger.Module
 import dagger.Provides
@@ -20,4 +23,7 @@ object RemoteDataModule {
 
     @Provides
     fun provideUsersRemoteDataSource(usersService: UsersService): UsersRemoteDataSource = UsersRemoteDataSourceImpl(usersService)
+
+    @Provides
+    fun provideCategoriesRemoteDataSource(categoriesService: CategoriesService): CategoriesRemoteDataSource = CategoriesRemoteDataSourceImpl(categoriesService)
 }
