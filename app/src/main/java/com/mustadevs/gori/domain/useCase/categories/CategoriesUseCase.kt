@@ -1,0 +1,6 @@
+package com.mustadevs.gori.domain.useCase.categories
+
+data class CategoriesUseCase(
+    val createCategory: CreateCategoryUseCase,
+    val getCategories: GetCategoriesUseCase
+)
