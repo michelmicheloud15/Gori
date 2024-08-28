@@ -13,6 +13,8 @@ import com.mustadevs.gori.domain.useCase.auth.UpdateSessionUseCase
 import com.mustadevs.gori.domain.useCase.categories.CategoriesUseCase
 import com.mustadevs.gori.domain.useCase.categories.CreateCategoryUseCase
 import com.mustadevs.gori.domain.useCase.categories.GetCategoriesUseCase
+import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryUseCase
+import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
@@ -44,7 +46,9 @@ object UseCaseModule {
     @Provides
     fun provideCategoriesUseCase(categoriesRepository: CategoriesRepository) = CategoriesUseCase(
         createCategory = CreateCategoryUseCase(categoriesRepository),
-        getCategories = GetCategoriesUseCase(categoriesRepository)
+        getCategories = GetCategoriesUseCase(categoriesRepository),
+        updateCategory = UpdateCategoryUseCase(categoriesRepository),
+        updateCategoryWithImage = UpdateCategoryWithImageUseCase(categoriesRepository)
     )
 
 

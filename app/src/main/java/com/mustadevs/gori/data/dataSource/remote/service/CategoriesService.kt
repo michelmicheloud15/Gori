@@ -1,4 +1,4 @@
-package com.mustadevs.gori.data.service
+package com.mustadevs.gori.data.dataSource.remote.service
 
 import com.mustadevs.gori.domain.model.Category
 import okhttp3.MultipartBody
@@ -37,7 +37,7 @@ interface CategoriesService {
     ): Response<Category>
 
     @Multipart
-    @PUT("categories/{id}")
+    @PUT("categories/upload/{id}")
     suspend fun updateWithImage(
         @Part file: MultipartBody.Part,
         @Path("id") id: String,

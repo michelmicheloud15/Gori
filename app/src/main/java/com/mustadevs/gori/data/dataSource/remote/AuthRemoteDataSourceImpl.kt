@@ -1,7 +1,7 @@
-package com.mustadevs.gori.data.repository.dataSourceImpl
+package com.mustadevs.gori.data.dataSource.remote
 
-import com.mustadevs.gori.data.repository.dataSource.AuthRemoteDataSource
-import com.mustadevs.gori.data.service.AuthService
+import com.mustadevs.gori.data.dataSource.remote.AuthRemoteDataSource
+import com.mustadevs.gori.data.dataSource.remote.service.AuthService
 import com.mustadevs.gori.domain.model.AuthResponse
 import com.mustadevs.gori.domain.model.User
 import retrofit2.Response

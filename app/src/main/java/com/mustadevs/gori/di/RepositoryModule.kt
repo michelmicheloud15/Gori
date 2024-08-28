@@ -1,12 +1,13 @@
 package com.mustadevs.gori.di
 
+import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSource
+import com.mustadevs.gori.data.dataSource.local.CategoriesLocalDataSource
+import com.mustadevs.gori.data.dataSource.remote.AuthRemoteDataSource
+import com.mustadevs.gori.data.dataSource.remote.CategoriesRemoteDataSource
+import com.mustadevs.gori.data.dataSource.remote.UsersRemoteDataSource
 import com.mustadevs.gori.data.repository.AuthRepositoryImpl
-import com.mustadevs.gori.data.repository.UsersRepositoryImpl
-import com.mustadevs.gori.data.repository.dataSource.AuthLocalDataSource
-import com.mustadevs.gori.data.repository.dataSource.AuthRemoteDataSource
-import com.mustadevs.gori.data.repository.dataSource.CategoriesRemoteDataSource
-import com.mustadevs.gori.data.repository.dataSource.UsersRemoteDataSource
 import com.mustadevs.gori.data.repository.CategoriesRepositoryImpl
+import com.mustadevs.gori.data.repository.UsersRepositoryImpl
 import com.mustadevs.gori.domain.repository.AuthRepository
 import com.mustadevs.gori.domain.repository.CategoriesRepository
 import com.mustadevs.gori.domain.repository.UsersRepository
@@ -22,7 +23,7 @@ object RepositoryModule {
     @Provides
     fun provideAuthRepository(
         authRemoteDataSource: AuthRemoteDataSource,
-                              authLocalDataSource: AuthLocalDataSource
+        authLocalDataSource: AuthLocalDataSource
                               ): AuthRepository = AuthRepositoryImpl(authRemoteDataSource, authLocalDataSource)
 
     @Provides
@@ -33,5 +34,6 @@ object RepositoryModule {
     @Provides
     fun provideCategoriesRepository(
         categoriesRemoteDataSource: CategoriesRemoteDataSource,
-    ): CategoriesRepository = CategoriesRepositoryImpl(categoriesRemoteDataSource)
+        categoriesLocalDataSource: CategoriesLocalDataSource
+    ): CategoriesRepository = CategoriesRepositoryImpl(categoriesRemoteDataSource, categoriesLocalDataSource)
 }

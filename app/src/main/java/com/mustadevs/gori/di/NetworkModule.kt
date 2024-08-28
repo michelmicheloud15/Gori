@@ -1,10 +1,10 @@
 package com.mustadevs.gori.di
 
 import com.mustadevs.gori.core.Config
-import com.mustadevs.gori.data.datastore.AuthDatastore
-import com.mustadevs.gori.data.service.AuthService
-import com.mustadevs.gori.data.service.CategoriesService
-import com.mustadevs.gori.data.service.UsersService
+import com.mustadevs.gori.data.dataSource.local.datastore.AuthDatastore
+import com.mustadevs.gori.data.dataSource.remote.service.AuthService
+import com.mustadevs.gori.data.dataSource.remote.service.CategoriesService
+import com.mustadevs.gori.data.dataSource.remote.service.UsersService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthService(retrofit: Retrofit): AuthService{
+    fun provideAuthService(retrofit: Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
     }
 

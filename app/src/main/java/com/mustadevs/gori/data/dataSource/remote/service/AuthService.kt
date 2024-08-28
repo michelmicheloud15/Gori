@@ -1,4 +1,4 @@
-package com.mustadevs.gori.data.service
+package com.mustadevs.gori.data.dataSource.remote.service
 
 import com.mustadevs.gori.domain.model.AuthResponse
 import com.mustadevs.gori.domain.model.User

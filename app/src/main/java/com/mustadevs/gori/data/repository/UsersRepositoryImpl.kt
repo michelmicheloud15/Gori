@@ -3,7 +3,7 @@ package com.mustadevs.gori.data.repository
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
-import com.mustadevs.gori.data.repository.dataSource.UsersRemoteDataSource
+import com.mustadevs.gori.data.dataSource.remote.UsersRemoteDataSource
 import com.mustadevs.gori.domain.model.User
 import com.mustadevs.gori.domain.repository.UsersRepository
 import com.mustadevs.gori.domain.util.Resource

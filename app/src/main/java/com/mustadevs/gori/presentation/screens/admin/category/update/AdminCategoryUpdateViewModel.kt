@@ -49,12 +49,25 @@ class AdminCategoryUpdateViewModel @Inject constructor(
 
     }
 
-    fun createCategory()= viewModelScope.launch {
-        if(file != null) {
-            categoryResponse = Resource.Loading
-            val result = categoriesUseCase.createCategory(state.toCategory(), file!!)
-            categoryResponse = result
+    fun onUpdate() {
+        if(file != null){
+            updateCategoryWithImage()
         }
+        else{
+            updateCategory()
+        }
+    }
+
+    fun updateCategory()= viewModelScope.launch {
+            categoryResponse = Resource.Loading
+            val result = categoriesUseCase.updateCategory(category.id!!, state.toCategory())
+            categoryResponse = result
+    }
+
+    fun updateCategoryWithImage()= viewModelScope.launch {
+        categoryResponse = Resource.Loading
+        val result = categoriesUseCase.updateCategoryWithImage(category.id!!, state.toCategory(), file!!)
+        categoryResponse = result
     }
 
     fun pickImage() = viewModelScope.launch{

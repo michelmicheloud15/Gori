@@ -1,4 +1,4 @@
-package com.mustadevs.gori.data.repository.dataSource
+package com.mustadevs.gori.data.dataSource.remote
 
 import com.mustadevs.gori.domain.model.User
 import retrofit2.Response

@@ -3,8 +3,8 @@ package com.mustadevs.gori.data.repository
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
-import com.mustadevs.gori.data.repository.dataSource.AuthLocalDataSource
-import com.mustadevs.gori.data.repository.dataSource.AuthRemoteDataSource
+import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSource
+import com.mustadevs.gori.data.dataSource.remote.AuthRemoteDataSource
 import com.mustadevs.gori.domain.model.AuthResponse
 import com.mustadevs.gori.domain.model.User
 import com.mustadevs.gori.domain.repository.AuthRepository

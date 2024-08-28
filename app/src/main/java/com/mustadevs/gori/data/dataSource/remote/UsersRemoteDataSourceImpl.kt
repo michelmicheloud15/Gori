@@ -1,7 +1,7 @@
-package com.mustadevs.gori.data.repository.dataSourceImpl
+package com.mustadevs.gori.data.dataSource.remote
 
-import com.mustadevs.gori.data.repository.dataSource.UsersRemoteDataSource
-import com.mustadevs.gori.data.service.UsersService
+import com.mustadevs.gori.data.dataSource.remote.UsersRemoteDataSource
+import com.mustadevs.gori.data.dataSource.remote.service.UsersService
 import com.mustadevs.gori.domain.model.User
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody

@@ -1,4 +1,4 @@
-package com.mustadevs.gori.data.datastore
+package com.mustadevs.gori.data.dataSource.local.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

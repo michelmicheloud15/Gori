@@ -1,7 +1,7 @@
-package com.mustadevs.gori.data.repository.dataSourceImpl
+package com.mustadevs.gori.data.dataSource.local
 
-import com.mustadevs.gori.data.datastore.AuthDatastore
-import com.mustadevs.gori.data.repository.dataSource.AuthLocalDataSource
+import com.mustadevs.gori.data.dataSource.local.datastore.AuthDatastore
+import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSource
 import com.mustadevs.gori.domain.model.AuthResponse
 import com.mustadevs.gori.domain.model.User
 import kotlinx.coroutines.flow.Flow

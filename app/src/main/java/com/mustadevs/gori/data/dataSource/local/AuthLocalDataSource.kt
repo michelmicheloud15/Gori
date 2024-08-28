@@ -1,4 +1,4 @@
-package com.mustadevs.gori.data.repository.dataSource
+package com.mustadevs.gori.data.dataSource.local
 
 import com.mustadevs.gori.domain.model.AuthResponse
 import com.mustadevs.gori.domain.model.User
