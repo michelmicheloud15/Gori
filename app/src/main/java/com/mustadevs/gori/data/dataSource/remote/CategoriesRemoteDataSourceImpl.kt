@@ -1,6 +1,5 @@
 package com.mustadevs.gori.data.dataSource.remote
 
-import com.mustadevs.gori.data.dataSource.remote.CategoriesRemoteDataSource
 import com.mustadevs.gori.data.dataSource.remote.service.CategoriesService
 import com.mustadevs.gori.domain.model.Category
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -46,8 +45,6 @@ class CategoriesRemoteDataSourceImpl(private val categoriesService: CategoriesSe
         return categoriesService.updateWithImage(fileFormData, id, nameData, descriptionData)
     }
 
-    override suspend fun delete(id: String): Response<Unit> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun delete(id: String): Response<Unit> = categoriesService.delete(id)
 
 }

@@ -13,7 +13,7 @@ sealed class AdminScreen(
     ) {
     object CategoryList: AdminScreen(
         route = "admin/category/list",
-        title = "Categorias",
+       title = "Categorias",
         icon = Icons.Default.List
     )
     object ProductList: AdminScreen(

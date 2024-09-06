@@ -20,18 +20,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.mustadevs.gori.R
 import com.mustadevs.gori.domain.model.Category
 import com.mustadevs.gori.presentation.navigation.screen.admin.AdminCategoryScreen
+import com.mustadevs.gori.presentation.screens.admin.category.list.AdminCategoryListViewModel
 
 @Composable
-fun AdminCategoryListItem(navController: NavHostController, category: Category) {
+fun AdminCategoryListItem(navController: NavHostController, category: Category, vm: AdminCategoryListViewModel = hiltViewModel()) {
     Column(
         Modifier
             .padding(start = 20.dp, end = 20.dp, top = 15.dp)
             .height(90.dp)
+            .clickable { navController.navigate(route=AdminCategoryScreen.ProductList.passCategory(category.toJson())) }
     ) {
         Row(){
             AsyncImage(
@@ -62,13 +65,21 @@ fun AdminCategoryListItem(navController: NavHostController, category: Category) 
                 Image(
                     modifier = Modifier
                         .size(27.dp)
-                        .clickable { navController.navigate(route = AdminCategoryScreen.CategoryUpdate.passCategory(category.toJson())) },
+                        .clickable {
+                            navController.navigate(
+                                route = AdminCategoryScreen.CategoryUpdate.passCategory(
+                                    category.toJson()
+                                )
+                            )
+                        },
                     painter = painterResource(id = R.drawable.edit),
                     contentDescription = ""
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Image(
-                    modifier = Modifier.size(27.dp),
+                    modifier = Modifier
+                        .size(27.dp)
+                        .clickable { vm.deleteCategory(category.id!!) },
                     painter = painterResource(id = R.drawable.trash),
                     contentDescription = ""
                 )

@@ -11,7 +11,7 @@ import com.mustadevs.gori.presentation.navigation.screen.admin.AdminScreen
 fun AdminBottomBar(navController: NavHostController){
 
     val screens = listOf(
-        AdminScreen.ProductList,
+     //   AdminScreen.ProductList,
         AdminScreen.CategoryList,
         AdminScreen.Profile
     )

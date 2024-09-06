@@ -4,6 +4,7 @@ import com.mustadevs.gori.core.Config
 import com.mustadevs.gori.data.dataSource.local.datastore.AuthDatastore
 import com.mustadevs.gori.data.dataSource.remote.service.AuthService
 import com.mustadevs.gori.data.dataSource.remote.service.CategoriesService
+import com.mustadevs.gori.data.dataSource.remote.service.ProductsService
 import com.mustadevs.gori.data.dataSource.remote.service.UsersService
 import dagger.Module
 import dagger.Provides
@@ -59,5 +60,11 @@ object NetworkModule {
     @Singleton
     fun provideCategoriesService(retrofit: Retrofit): CategoriesService {
         return retrofit.create(CategoriesService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductsService(retrofit: Retrofit): ProductsService {
+        return retrofit.create(ProductsService::class.java)
     }
 }

@@ -2,6 +2,7 @@ package com.mustadevs.gori.di
 
 import com.mustadevs.gori.domain.repository.AuthRepository
 import com.mustadevs.gori.domain.repository.CategoriesRepository
+import com.mustadevs.gori.domain.repository.ProductsRepository
 import com.mustadevs.gori.domain.repository.UsersRepository
 import com.mustadevs.gori.domain.useCase.auth.AuthUseCase
 import com.mustadevs.gori.domain.useCase.auth.GetSessionDataUseCase
@@ -12,9 +13,13 @@ import com.mustadevs.gori.domain.useCase.auth.SaveSessionUseCase
 import com.mustadevs.gori.domain.useCase.auth.UpdateSessionUseCase
 import com.mustadevs.gori.domain.useCase.categories.CategoriesUseCase
 import com.mustadevs.gori.domain.useCase.categories.CreateCategoryUseCase
+import com.mustadevs.gori.domain.useCase.categories.DeleteCategoryUseCase
 import com.mustadevs.gori.domain.useCase.categories.GetCategoriesUseCase
 import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryUseCase
 import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryWithImageUseCase
+import com.mustadevs.gori.domain.useCase.products.CreateProductUseCase
+import com.mustadevs.gori.domain.useCase.products.FindByCategoryUseCase
+import com.mustadevs.gori.domain.useCase.products.ProductsUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
@@ -48,7 +53,14 @@ object UseCaseModule {
         createCategory = CreateCategoryUseCase(categoriesRepository),
         getCategories = GetCategoriesUseCase(categoriesRepository),
         updateCategory = UpdateCategoryUseCase(categoriesRepository),
-        updateCategoryWithImage = UpdateCategoryWithImageUseCase(categoriesRepository)
+        updateCategoryWithImage = UpdateCategoryWithImageUseCase(categoriesRepository),
+        deleteCategory = DeleteCategoryUseCase(categoriesRepository)
+    )
+
+    @Provides
+    fun provideProductsUseCase(productsRepository: ProductsRepository) = ProductsUseCase(
+        createProduct = CreateProductUseCase(productsRepository),
+        findByCategory = FindByCategoryUseCase(productsRepository)
     )
 
 

@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.mustadevs.gori.presentation.navigation.Graph
+import com.mustadevs.gori.presentation.screens.admin.category.list.components.DeleteCategory
 import com.mustadevs.gori.presentation.screens.admin.category.list.components.GetCategories
 
 @Composable
@@ -34,5 +35,7 @@ fun AdminCategoryListScreen(navController: NavHostController){
     ) {paddingValues ->
         GetCategories(navController, paddingValues)
     }
+
+    DeleteCategory()
 
 }

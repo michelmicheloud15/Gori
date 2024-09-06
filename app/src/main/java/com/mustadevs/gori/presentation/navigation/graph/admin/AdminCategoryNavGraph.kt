@@ -10,6 +10,8 @@ import com.mustadevs.gori.presentation.navigation.Graph
 import com.mustadevs.gori.presentation.navigation.screen.admin.AdminCategoryScreen
 import com.mustadevs.gori.presentation.screens.admin.category.create.AdminCategoryCreateScreen
 import com.mustadevs.gori.presentation.screens.admin.category.update.AdminCategoryUpdateScreen
+import com.mustadevs.gori.presentation.screens.admin.product.create.AdminProductCreateScreen
+import com.mustadevs.gori.presentation.screens.admin.product.list.AdminProductListScreen
 
 fun NavGraphBuilder.AdminCategoryNavGraph(navController: NavHostController){
     navigation(
@@ -26,6 +28,23 @@ fun NavGraphBuilder.AdminCategoryNavGraph(navController: NavHostController){
             })){
             it.arguments?.getString("category")?.let{
                 AdminCategoryUpdateScreen(navController, it)
+            }
+        }
+
+        composable(route= AdminCategoryScreen.ProductList.route,
+            arguments = listOf(navArgument("category"){
+                type = NavType.StringType
+            })){
+            it.arguments?.getString("category")?.let{
+                AdminProductListScreen(navController, it)
+            }
+        }
+        composable(route= AdminCategoryScreen.ProductCreate.route,
+            arguments = listOf(navArgument("category"){
+                type = NavType.StringType
+            })){
+            it.arguments?.getString("category")?.let{
+                AdminProductCreateScreen(navController, it)
             }
         }
 

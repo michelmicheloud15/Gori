@@ -138,8 +138,19 @@ class CategoriesRepositoryImpl(
 
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override suspend fun delete(id: String): Resource<Unit> {
-        TODO("Not yet implemented")
+        ResponseToRequest.send(remoteDataSource.delete(id)).run{
+            return when(this){
+                is Resource.Success -> {
+                    localDataSource.delete(id)
+                    Resource.Success(Unit)
+                }
+                else->{
+                    Resource.Failure("Error Desconocido")
+                }
+            }
+        }
     }
 
 }

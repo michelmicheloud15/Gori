@@ -51,7 +51,9 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
 { //sacar el vm para obtener preview
    val activity = LocalContext.current as? Activity
 
-    Box(modifier = Modifier.padding(paddingValues = paddingValues).padding(bottom = 55.dp)){
+    Box(modifier = Modifier
+        .padding(paddingValues = paddingValues)
+        .padding(bottom = 55.dp)){
         Image(
             modifier = Modifier.fillMaxSize(),
             painter = painterResource(id = R.drawable.ic_reme_jero),
@@ -73,10 +75,28 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
                     vm.logout()
                     activity?.finish()
                     activity?.startActivity(Intent(activity, MainActivity::class.java))
-                }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                }
+            ) {
+                Image(
+                    modifier = Modifier.size(35.dp),
+                    painter = painterResource(id = R.drawable.logout),
                     contentDescription = ""
+                )
+            }
+            IconButton(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(end = 15.dp, top = 15.dp),
+                onClick = {
+                    activity?.finish()
+                    activity?.startActivity(Intent(activity, MainActivity::class.java))
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(35.dp),
+                    imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                    contentDescription = "",
+                    tint = Color.White,
                 )
             }
             //Si el usuario cargo imagen:
