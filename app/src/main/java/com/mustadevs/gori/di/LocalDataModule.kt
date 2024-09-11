@@ -4,7 +4,10 @@ import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSource
 import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSourceImpl
 import com.mustadevs.gori.data.dataSource.local.CategoriesLocalDataSource
 import com.mustadevs.gori.data.dataSource.local.CategoriesLocalDataSourceImpl
+import com.mustadevs.gori.data.dataSource.local.ProductsLocalDataSource
+import com.mustadevs.gori.data.dataSource.local.ProductsLocalDataSourceImpl
 import com.mustadevs.gori.data.dataSource.local.dao.CategoriesDao
+import com.mustadevs.gori.data.dataSource.local.dao.ProductsDao
 import com.mustadevs.gori.data.dataSource.local.datastore.AuthDatastore
 import dagger.Module
 import dagger.Provides
@@ -20,4 +23,7 @@ object LocalDataModule {
 
     @Provides
     fun provideCategoriesLocalDataSource(categoriesDao: CategoriesDao): CategoriesLocalDataSource = CategoriesLocalDataSourceImpl(categoriesDao)
+
+    @Provides
+    fun provideProductsLocalDataSource(productsDao: ProductsDao): ProductsLocalDataSource = ProductsLocalDataSourceImpl(productsDao)
 }

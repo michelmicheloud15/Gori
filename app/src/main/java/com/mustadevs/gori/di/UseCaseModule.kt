@@ -18,8 +18,12 @@ import com.mustadevs.gori.domain.useCase.categories.GetCategoriesUseCase
 import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryUseCase
 import com.mustadevs.gori.domain.useCase.categories.UpdateCategoryWithImageUseCase
 import com.mustadevs.gori.domain.useCase.products.CreateProductUseCase
+import com.mustadevs.gori.domain.useCase.products.DeleteProductUseCase
+import com.mustadevs.gori.domain.useCase.products.FindAllUseCase
 import com.mustadevs.gori.domain.useCase.products.FindByCategoryUseCase
 import com.mustadevs.gori.domain.useCase.products.ProductsUseCase
+import com.mustadevs.gori.domain.useCase.products.UpdateProductUseCase
+import com.mustadevs.gori.domain.useCase.products.UpdateProductWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserUseCase
 import com.mustadevs.gori.domain.useCase.users.UpdateUserWithImageUseCase
 import com.mustadevs.gori.domain.useCase.users.UsersUseCase
@@ -60,7 +64,11 @@ object UseCaseModule {
     @Provides
     fun provideProductsUseCase(productsRepository: ProductsRepository) = ProductsUseCase(
         createProduct = CreateProductUseCase(productsRepository),
-        findByCategory = FindByCategoryUseCase(productsRepository)
+        findByCategory = FindByCategoryUseCase(productsRepository),
+        updateProduct = UpdateProductUseCase(productsRepository),
+        updateProductWithImage = UpdateProductWithImageUseCase(productsRepository),
+        deleteProduct = DeleteProductUseCase(productsRepository),
+        findAll = FindAllUseCase(productsRepository)
     )
 
 

@@ -2,6 +2,7 @@ package com.mustadevs.gori.di
 
 import com.mustadevs.gori.data.dataSource.local.AuthLocalDataSource
 import com.mustadevs.gori.data.dataSource.local.CategoriesLocalDataSource
+import com.mustadevs.gori.data.dataSource.local.ProductsLocalDataSource
 import com.mustadevs.gori.data.dataSource.remote.AuthRemoteDataSource
 import com.mustadevs.gori.data.dataSource.remote.CategoriesRemoteDataSource
 import com.mustadevs.gori.data.dataSource.remote.ProductsRemoteDataSource
@@ -43,5 +44,6 @@ object RepositoryModule {
     @Provides
     fun provideProductsRepository(
         productsRemoteDataSource: ProductsRemoteDataSource,
-    ): ProductsRepository = ProductsRepositoryImpl(productsRemoteDataSource)
+        productsLocalDataSource: ProductsLocalDataSource
+    ): ProductsRepository = ProductsRepositoryImpl(productsRemoteDataSource, productsLocalDataSource)
 }
