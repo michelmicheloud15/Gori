@@ -110,6 +110,12 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
+
+    //HORIZONTAL PAGER - CARRUSEL DE IMAGENES
+    val horizontal_version = "0.22.0-rc"
+    implementation ("com.google.accompanist:accompanist-pager:$horizontal_version")
+    implementation ("com.google.accompanist:accompanist-pager-indicators:$horizontal_version")
+
 }
 
 kapt {
